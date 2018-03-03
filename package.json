@@ -1,6 +1,10 @@
 {
   "name": "storii",
   "private": true,
+  "cacheDirectories": [
+    "node_modules",
+    "client/node_modules"
+  ],
   "dependencies": {
     "@rails/webpacker": "^3.2.2",
     "react-on-rails": "^10.1.3"
