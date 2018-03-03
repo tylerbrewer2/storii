@@ -7,6 +7,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.8/interact.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/inline/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -14,23 +15,43 @@
 
   <body>
     <%= yield %>
-  <script>
-    InlineEditor
-      .create( document.querySelector( '#editor' ), {
-          toolbar: [ 'headings', 'bold', 'italic' ],
-          heading: {
-              options: [
-                  { modelElement: 'heading1', viewElement: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                  { modelElement: 'heading2', viewElement: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-              ]
-          }
-      } )
-      .then( editor => {
-          console.log( editor );
-      } )
-      .catch( error => {
-          console.error( error );
-      } );
-  </script>
+
+    <script>
+      InlineEditor
+        .create( document.querySelector( '#editor' ), {
+            toolbar: [ 'headings', 'bold', 'italic' ],
+            heading: {
+                options: [
+                    { modelElement: 'heading1', viewElement: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                    { modelElement: 'heading2', viewElement: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                ]
+            }
+        } )
+        .then( editor => {
+            console.log( editor );
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+
+        html2canvas(document.querySelector("#editor"))
+          .then(canvas => {
+            var dataURL = canvas.toDataURL("image/png");
+
+            fetch("http://localhost:3000/test", {
+              body: JSON.stringify({storii: dataURL}), // must match 'Content-Type' header
+              cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+              credentials: 'same-origin', // include, *omit
+              headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+              },
+              method: 'POST', // *GET, PUT, DELETE, etc.
+              mode: 'cors', // no-cors, *same-origin
+              referrer: 'no-referrer', // *client
+            })
+          })
+
+    </script>
   </body>
 </html>
