@@ -1,7 +1,15 @@
 // target elements with the "draggable" class
 interact('.draggable')
+  .on('doubletap', function(e) {
+    // enables contenteditable element to be edited
+    // for some reason the element is *only* editable after being moved unless we handle this
+    var div = document.getElementById('drag-1');
+    setTimeout(function() {
+        div.focus();
+    }, 0);
+  })
   .draggable({
-    // enable inertial throwing
+    // enable inertial throwing, this makes the animation way smoother
     inertia: true,
     // keep the element within the area of it's parent
     restrict: {
@@ -9,28 +17,14 @@ interact('.draggable')
       endOnly: true,
       elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
     },
-    // enable autoScroll
-    autoScroll: true,
-
-    // call this function on every dragmove event
     onmove: dragMoveListener,
-    // call this function on every dragend event
-    onend: function (event) {
-      var textEl = event.target.querySelector('p');
-
-      textEl && (textEl.textContent =
-        'moved a distance of '
-        + (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-                     Math.pow(event.pageY - event.y0, 2) | 0))
-            .toFixed(2) + 'px');
-    }
   });
 
-  function dragMoveListener (event) {
-    var target = event.target,
+  function dragMoveListener (e) {
+    var target = e.target,
         // keep the dragged position in the data-x/data-y attributes
-        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+        x = (parseFloat(target.getAttribute('data-x')) || 0) + e.dx,
+        y = (parseFloat(target.getAttribute('data-y')) || 0) + e.dy;
 
     // translate the element
     target.style.webkitTransform =
