@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.8/interact.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/inline/ckeditor.js"></script>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -13,5 +14,23 @@
 
   <body>
     <%= yield %>
+  <script>
+    InlineEditor
+      .create( document.querySelector( '#editor' ), {
+          toolbar: [ 'headings', 'bold', 'italic' ],
+          heading: {
+              options: [
+                  { modelElement: 'heading1', viewElement: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                  { modelElement: 'heading2', viewElement: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+              ]
+          }
+      } )
+      .then( editor => {
+          console.log( editor );
+      } )
+      .catch( error => {
+          console.error( error );
+      } );
+  </script>
   </body>
 </html>

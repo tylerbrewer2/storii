@@ -3,7 +3,7 @@ interact('.draggable')
   .on('doubletap', function(e) {
     // enables contenteditable element to be edited
     // for some reason the element is *only* editable after being moved unless we handle this
-    var div = document.getElementById('drag-1');
+    var div = document.getElementById('editor');
     setTimeout(function() {
         div.focus();
     }, 0);
