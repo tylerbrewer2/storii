@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem "paperclip", "~> 5.2.1"
+gem 'webpacker', '~> 3.2'
+gem 'react_on_rails', '10.0.2' # prefer exact gem version to match npm version
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
