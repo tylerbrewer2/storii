@@ -1,12 +1,15 @@
 {
   "name": "storii",
   "private": true,
-  "cacheDirectories": [
-    "node_modules",
-    "client/node_modules"
-  ],
   "dependencies": {
     "@rails/webpacker": "^3.2.2",
+    "babel-preset-react": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "caniuse-lite": "^1.0.30000811",
+    "js-yaml": "^3.10.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-on-rails": "^10.1.3"
   },
   "devDependencies": {
