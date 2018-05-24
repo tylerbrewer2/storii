@@ -5,6 +5,7 @@
     "@rails/webpacker": "^3.2.2",
     "babel-preset-react": "^6.24.1",
     "babel-runtime": "^6.26.0",
+    "bulma": "^0.6.2",
     "caniuse-lite": "^1.0.30000811",
     "js-yaml": "^3.10.0",
     "prop-types": "^15.6.1",

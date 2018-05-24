@@ -1,0 +1,5 @@
+<% content_for :javascript_pack do %>
+    <%= javascript_pack_tag 'home-bundle' %>
+<% end %>
+
+<%= react_component("Home", prerender: false) %>
